@@ -1,6 +1,5 @@
 <script lang="ts">
     import { API_URL } from "../../envStore";
-    // import fetchSession from "fetch-session";
 
 	let signinEmail: string = '';
 	let signinPassword: string = '';
@@ -21,7 +20,6 @@
 				data
 			),
 		})
-        console.log(response)
         return response.json();
 	}
 </script>
