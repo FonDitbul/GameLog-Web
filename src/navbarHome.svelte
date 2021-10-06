@@ -1,18 +1,20 @@
 <script lang="ts">
+    import HomeGameCategory from "./homeGameCategory.svelte"
     import testGame from "./response.json"
-    interface Game{
-
-    }
-    console.log(testGame)
-    export let num: number;
-    // export let category: string;
-    // export let game: object;
-
+    
+    const category = testGame.map((i)=>{
+        const gameName = i.game.map((j)=>{return j.name})
+        return i.type
+    })
+    
 </script>
 
 
-<ul>
-    <l1>{num}</l1>
-    <li>{num}</li>
-    <li>{num}</li>
-</ul>
+<div>
+    <HomeGameCategory category={category[0]}/>
+    <HomeGameCategory category={category[1]}/>
+    <HomeGameCategory category={category[2]}/>
+    <HomeGameCategory category={category[3]}/>
+    <HomeGameCategory category={category[4]}/>
+    <HomeGameCategory category={category[5]}/>
+</div>
