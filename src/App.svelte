@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let name: string;
-	import Home from './home.svelte';
+	import Home from './navbarHome.svelte';
 </script>
 
 
