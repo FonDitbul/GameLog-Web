@@ -39,7 +39,7 @@
 		<Link to ="/">Home</Link>
 		<Link to ="/library">Library</Link>
 		<Link to ="/wishlist">WishList</Link>
-		<Link to ="/search">Serarch</Link>
+		<Link to ="/search">Search</Link>
 
 		<Link to ="/signin"> login</Link>
 		<Link to ="/signup"> register </Link>
