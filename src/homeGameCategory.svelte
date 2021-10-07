@@ -2,7 +2,7 @@
     export let category:string;
 
     import testGame from "./test/game.json"
-    console.log(testGame)
+    // console.log(testGame)
     let gameList = [];
 
     testGame.map((i)=>{
@@ -10,7 +10,7 @@
             i.game.map((j)=>{gameList.push(j.name)})
         }
     })
-    console.log(gameList)
+    // console.log(gameList)
 </script>
 
 <div>

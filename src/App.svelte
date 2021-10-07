@@ -1,19 +1,25 @@
 <script lang="ts">
 	export let name: string;
 	import Home from './navbarHome.svelte';
+
+	import Library from './route/Library.svelte'
+	import Wishlist from './route/Wishlist.svelte'
+	import Search from './route/Search.svelte'
+
+	import Signin from './route/Signin.svelte'
+	import Signup from './route/Signup.svelte'
+
+
+
 	let toggle = false;
+
+	import { onMount } from 'svelte'
+	onMount(()=>{ //HTML이 mount 된후에 작동하는 code
+
+	})
+	import { Router, Route, Link } from "svelte-navigator";
+
 </script>
-
-<ul class="navbar">
-	<l1><img src="//public/gamelog_favicon.png"></l1>
-	<li><a href="/"> Home | </a></li>
-	<li><a href="/Library"> Library | </a></li>
-	<li><a href="/wishlist"> Wishlist | </a></li>
-	<li><a href="/Search"> Serach | </a></li>
-
-	<li><a href="/login"> login | </a></li>
-	<li><a href="/signup"> register </a></li>
-</ul>
 
 <button on:click={()=> {toggle = !toggle}}>
 	Toggle
@@ -23,14 +29,31 @@
 {:else}
 	<h2> no toggle </h2>
 {/if}
-
-
 <main>
 	<h1>Hello {name}!</h1>	
-	<Home/>
 </main>
 
 
+<Router>
+	<nav>
+		<Link to ="/">Home</Link>
+		<Link to ="/library">Library</Link>
+		<Link to ="/wishlist">WishList</Link>
+		<Link to ="/search">Serarch</Link>
+
+		<Link to ="/signin"> login</Link>
+		<Link to ="/signup"> register </Link>
+	</nav>
+	<div>
+		<Route path="/"><Home/></Route>
+		<Route path="/library"><Library/></Route>
+		<Route path="/wishlist"><Wishlist/></Route>
+		<Route path="/search"><Search/></Route>
+
+		<Route path="/signin"><Signin/></Route>
+		<Route path="/signup"><Signup/></Route>
+	</div>
+</Router>
 
 <style>
 	main {
@@ -51,16 +74,5 @@
 		main {
 			max-width: none;
 		}
-	}
-	ul.navbar{
-		list-style:none;
-		margin:10;
-		padding:0;
-	}
-	li{
-		margin: 10;
-		padding: 10;
-		border : 10;
-		float:left;
 	}
 </style>
