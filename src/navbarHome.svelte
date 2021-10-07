@@ -1,6 +1,6 @@
 <script lang="ts">
     import HomeGameCategory from "./homeGameCategory.svelte"
-    import testGame from "./response.json"
+    import testGame from "./test/game.json"
     
     const category = testGame.map((i)=>{
         const gameName = i.game.map((j)=>{return j.name})

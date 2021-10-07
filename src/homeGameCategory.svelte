@@ -1,8 +1,7 @@
 <script lang="ts">
-    import HomeGameList from "./homeGameList.svelte";
     export let category:string;
 
-    import testGame from "./response.json"
+    import testGame from "./test/game.json"
     console.log(testGame)
     let gameList = [];
 
@@ -12,18 +11,6 @@
         }
     })
     console.log(gameList)
-
-    // interface cover{
-    //     id:number,
-    //     game:number,
-    //     height:number,
-    //     width:number,
-    //     url:string
-    // }
-
-    // let id:number;
-    // let name:string;
-    // let cover:cover;
 </script>
 
 <div>
