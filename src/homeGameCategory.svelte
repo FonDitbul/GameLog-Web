@@ -12,20 +12,27 @@
         }
     })
     console.log(gameList)
+
+    // interface cover{
+    //     id:number,
+    //     game:number,
+    //     height:number,
+    //     width:number,
+    //     url:string
+    // }
+
+    // let id:number;
+    // let name:string;
+    // let cover:cover;
 </script>
 
 <div>
     {category}
     <ul>
-        <HomeGameList name = {gameList[0]}/>
-        <HomeGameList name = {gameList[1]}/>
-        <HomeGameList name = {gameList[2]}/>
-        <HomeGameList name = {gameList[3]}/>
-        <HomeGameList name = {gameList[4]}/>
-        <HomeGameList name = {gameList[5]}/>
-        <HomeGameList name = {gameList[6]}/>
-        <HomeGameList name = {gameList[7]}/>
-        <HomeGameList name = {gameList[8]}/>
-        <HomeGameList name = {gameList[9]}/>
+        {#each gameList as game}
+            <li>
+                <p>{game}</p>
+            </li>
+        {/each}
     </ul>
 </div>
