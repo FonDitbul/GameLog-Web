@@ -3,8 +3,8 @@
 </script>
 
 <div class="center">
+    <h4> 로그인 </h4>
     <div>
-        <h4>email</h4>
         <input type="text"
         value={text}
         on:input={(e) => {text = e.target.value}} 
@@ -12,13 +12,15 @@
     </div>
     
     <div>
-        <h4>password</h4>
         <input type="password"
         placeholder="password"/>
     </div>
     
     <button on:click={() => {}}>
-        login!
+        로그인
+    </button>
+    <button on:click={() => {}}>
+        회원가입
     </button>
 </div>
 

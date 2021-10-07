@@ -32,7 +32,7 @@
     
     
     <button on:click={() => {}}>
-        SIGN UP!
+        회원가입
     </button>
 </div>
 
