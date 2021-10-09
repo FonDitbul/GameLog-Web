@@ -59,6 +59,9 @@
 		font-weight: 100;
 	}
 
+	nav{
+		margin-left:40px;
+	}
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
