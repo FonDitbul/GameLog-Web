@@ -8,11 +8,6 @@
 
 	import Signin from './route/Signin.svelte'
 	import Signup from './route/Signup.svelte'
-
-
-
-	let toggle = false;
-
 	import { onMount } from 'svelte'
 	onMount(()=>{ //HTML이 mount 된후에 작동하는 code
 
@@ -21,16 +16,8 @@
 
 </script>
 
-<button on:click={()=> {toggle = !toggle}}>
-	Toggle
-</button>
-{#if toggle}
-	<h2> hi toggle! </h2>
-{:else}
-	<h2> no toggle </h2>
-{/if}
 <main>
-	<h1>Hello {name}!</h1>	
+	<h1>{name}!</h1>	
 </main>
 
 
