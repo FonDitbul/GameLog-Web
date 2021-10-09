@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let name: string;
-	import Home from './navbarHome.svelte';
+	import Home from './route/Home.svelte';
 
 	import Library from './route/Library.svelte'
 	import Wishlist from './route/Wishlist.svelte'
@@ -9,10 +9,12 @@
 	import Signin from './route/Signin.svelte'
 	import Signup from './route/Signup.svelte'
 	import { onMount } from 'svelte'
+
+	import { Router, Route, Link } from "svelte-navigator";
+
 	onMount(()=>{ //HTML이 mount 된후에 작동하는 code
 
 	})
-	import { Router, Route, Link } from "svelte-navigator";
 
 </script>
 
