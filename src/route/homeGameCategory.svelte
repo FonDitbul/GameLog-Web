@@ -1,29 +1,17 @@
 <script lang="ts">
-    import testGame from "../test/game.json";
-
     import Image from './imagetest.svelte';
 
-    export let category:string;
-    let gameList = [];
-    testGame.map((i)=>{
-        if(i.type === category){
-            i.game.map((j)=>{
-                gameList.push(j)
-            })
-        }
-    })
-    
-
+    export let category:Object;
 </script>
 
 
 <div class='category'>
-    {category}
+    <h1>{category.type}</h1>
     <ul>
-        {#each gameList as game}
+        {#each category.game as Game}
             <li>
-                <p>{game.name}</p>
-                <Image cover={game.cover}/>
+                <p>{Game.name}</p>
+                <Image cover={Game.cover}/>
             </li>
         {/each}
     </ul>
@@ -31,13 +19,13 @@
 
 <style>
     div.category{
-        position:relative;
+        /*position:relative;*/
     }
     ul{
-        float:left;
-        text-align: center;
-        padding: 1em;
-        list-style: none;
-        margin-left: 10px;
+        /*float:left;*/
+        /*text-align: center;*/
+        /*padding: 1em;*/
+        /*list-style: none;*/
+        /*margin-left: 10px;*/
     }
 </style>
