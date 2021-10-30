@@ -2,6 +2,7 @@
     export let category:Object;
 	// import {params} from '@roxi/routify'
     function clickevent(){
+		window.location.href = '/gamedetail'
     }
 </script>
 
