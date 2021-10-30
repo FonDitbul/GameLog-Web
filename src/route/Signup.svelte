@@ -30,7 +30,6 @@
         placeholder="password confirm"/>
     </div>
     
-    
     <button on:click={() => {}}>
         회원가입
     </button>
