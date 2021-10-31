@@ -26,7 +26,4 @@
 
 
 <style>
-    .center{
-        text-align: center;
-    }
 </style>

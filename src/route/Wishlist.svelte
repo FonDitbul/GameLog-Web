@@ -35,7 +35,7 @@
                 </Link>
             </td>
         {/each}
-    </ul>
+    </table>
 </div>
 
 <style>

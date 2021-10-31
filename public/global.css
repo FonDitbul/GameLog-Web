@@ -65,3 +65,23 @@ button:focus {
 .center{
 	text-align: center;
 }
+
+h1{
+	font-size: 4em;
+}
+
+.box {
+	text-align:center;
+	width: 150px;
+	height:200px;
+	border: 1px solid #aaa;
+	border-radius: 2px;
+	box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+	padding: 1em;
+	margin: 0 0 1em 0;
+}
+
+table{
+	display: flex;
+	flex-wrap:wrap
+}
