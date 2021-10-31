@@ -18,6 +18,15 @@
 
 	})
 
+	import {serverURL} from "./envStore";
+
+	export let user:Object;
+	user = {
+		id:0,
+		email:"test@gmail.com",
+		name:"test",
+		login:true,
+	}
 </script>
 
 <main class="absolute">
@@ -28,9 +37,13 @@
 			<Link to ="/library">Library</Link>
 			<Link to ="/wishlist">WishList</Link>
 			<Link to ="/search">Search</Link>
-
-			<Link to ="/signin"> login</Link>
-			<Link to ="/signup"> register </Link>
+			{#if user.login}
+				<Link to ="/signin"> 로그인</Link>
+				<Link to ="/signup"> 회원가입 </Link>
+			{:else}
+				<Link to ="/user">{user.name}</Link>
+				<Link to ="/logout"> 로그아웃 </Link>
+			{/if}
 		</nav>
 		<div>
 			<Route path="/"><Home/></Route>
@@ -59,7 +72,9 @@
 		font-size: 4em;
 		font-weight: 100;
 	}
-
+	a{
+		margin :10px 10px 10px 10px;
+	}
 	nav{
 		margin: 10px 10px 10px 30px;
 	}
