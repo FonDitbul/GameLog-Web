@@ -1,9 +1,7 @@
 <script lang="ts">
-    export let category:Object;
-	// import {params} from '@roxi/routify'
-    function clickevent(){
-		window.location.href = '/gamedetail'
-    }
+    import {Link} from "svelte-navigator";
+
+	export let category:Object;
 </script>
 
 
@@ -11,12 +9,14 @@
     <h1>{category.type}</h1>
     <ul class="gamelist">
         {#each category.game as Game}
-            <div class="static" on:click={clickevent}>
-                <li class="box">
-                    <img src={Game.cover[0].url}>
-                    <p>{Game.name}</p>
-                </li>
-            </div>
+            <Link to="/gamedetail">
+                <div class="static">
+                    <li class="box">
+                        <img src={Game.cover[0].url}>
+                        <p>{Game.name}</p>
+                    </li>
+                </div>
+            </Link>
         {/each}
     </ul>
 </div>

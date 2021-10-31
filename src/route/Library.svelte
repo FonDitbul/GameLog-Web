@@ -1,4 +1,6 @@
 <script lang="ts">
+	import {Link} from "svelte-navigator";
+
 	let selected:string;
 	let options = [
 		{name:'aggregated_rating', 'text':'기관 점수 순'},
@@ -6,8 +8,8 @@
 		{name:'first_relase_date', 'text':'출시일 순'},
 		{name:'createdTime', 'text':'담은 날짜 순'},
 	]
-	import testGame from "../test/game.json"
-    let tempLibgame = testGame[0]
+	import testGame from "../test/HomeGame.json"
+	let tempLibgame = testGame[0]
 </script>
 
 <div class="library">
@@ -20,12 +22,14 @@
     </select>
     <ul>
         {#each tempLibgame.game as Game}
-            <div class="static">
-                <li class="box">
-                    <img src={Game.cover[0].url}>
-                    <p>{Game.name}</p>
-                </li>
-            </div>
+            <Link to="/gamedetail">
+                <div class="static">
+                    <li class="box">
+                        <img src={Game.cover[0].url}>
+                        <p>{Game.name}</p>
+                    </li>
+                </div>
+            </Link>
         {/each}
     </ul>
 </div>
