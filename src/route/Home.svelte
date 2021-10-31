@@ -1,6 +1,6 @@
 <script lang="ts">
     import HomeGameCategory from "./homeGameCategory.svelte"
-    import testGame from "../test/game.json"
+    import testGame from "../test/HomeGame.json"
 </script>
 
 
