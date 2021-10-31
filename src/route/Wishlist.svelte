@@ -12,7 +12,11 @@
 	let tempLibgame = testGame[0]
 </script>
 
-<div class="library">
+<h1>
+    위시리스트
+</h1>
+
+<div class="library container mx-auto">
     <select bind:value={selected}>
         {#each options as option}
             <option value={option}>
@@ -20,27 +24,19 @@
             </option>
         {/each}
     </select>
-    <ul>
+    <table class="library-table">
         {#each tempLibgame.game as Game}
-            <Link to="/gamedetail">
-                <div class="static">
-                    <li class="box">
+            <td>
+                <Link to="/gamedetail">
+                    <div class="box">
                         <img src={Game.cover[0].url}>
                         <p>{Game.name}</p>
-                    </li>
-                </div>
-            </Link>
+                    </div>
+                </Link>
+            </td>
         {/each}
     </ul>
 </div>
 
 <style>
-    .box {
-        width: 300px;
-        border: 1px solid #aaa;
-        border-radius: 2px;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        padding: 1em;
-        margin: 0 0 1em 0;
-    }
 </style>
