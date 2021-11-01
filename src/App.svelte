@@ -1,32 +1,45 @@
 <script lang="ts">
-	export let name: string;
-	import Home from './route/Home.svelte';
+	import {beforeUpdate, onMount} from 'svelte'
+	import { Router, Route, Link } from "svelte-navigator";
 
+	import Home from './route/Home.svelte';
 	import Library from './route/Library.svelte'
 	import Wishlist from './route/Wishlist.svelte'
 	import Search from './route/Search.svelte'
-
 	import Signin from './route/Signin.svelte'
 	import Signup from './route/Signup.svelte'
 	import GameDetail from "./route/GameDetail.svelte";
 
-	import { onMount } from 'svelte'
+	import {API_URL} from "./envStore";
 
-	import { Router, Route, Link } from "svelte-navigator";
+	export let name: string;
 
-	onMount(()=>{ //HTML이 mount 된후에 작동하는 code
-
-	})
-
-	import {serverURL} from "./envStore";
-
-	export let user:Object;
-	user = {
-		id:0,
-		email:"test@gmail.com",
-		name:"test",
-		login:true,
+	let response;
+	let user:Object;
+	let isLogin:boolean = false;
+	async function getUser(){
+		const data = {
+			"email":"test@gmail.com",
+			"password":"123456"
+		}
+		const response = await fetch(API_URL+'auth/login?test=test',{
+			method: 'POST',
+			headers:{
+				// 'Accept': 'application/json',
+				'Content-Type':"application/json",
+			},
+			body: JSON.stringify(
+					data
+			),
+		})
+		return response.json()
 	}
+	onMount(async ()=>{ //HTML이 mount 된후에 작동하는 code
+		response = await getUser()
+		user = response.user;
+		// console.log(user)
+		console.log(response)
+	})
 </script>
 
 <main class="absolute">
@@ -37,16 +50,21 @@
 			<Link to ="/library">Library</Link>
 			<Link to ="/wishlist">WishList</Link>
 			<Link to ="/search">Search</Link>
-			{#if user.login}
+			{#if isLogin}
+				<Link to ="/user">{user.nickname}</Link>
+				<Link to ="/logout"> 로그아웃 </Link>
+			{:else}
 				<Link to ="/signin"> 로그인</Link>
 				<Link to ="/signup"> 회원가입 </Link>
-			{:else}
-				<Link to ="/user">{user.name}</Link>
-				<Link to ="/logout"> 로그아웃 </Link>
 			{/if}
 		</nav>
 		<div>
-			<Route path="/"><Home/></Route>
+			{#await response}
+			{:then r}
+				<Route path="/"><Home/></Route>
+			{:catch error}
+				<p>{error}</p>
+			{/await}
 			<Route path="/library"><Library/></Route>
 			<Route path="/wishlist"><Wishlist/></Route>
 			<Route path="/search"><Search/></Route>

@@ -1,12 +1,14 @@
+
 <script lang="ts">
 	import HomeGameCategory from "./homeGameCategory.svelte"
-	import testGame from "../test/HomeGame.json"
-	import {serverURL} from "../envStore";
+	import { API_URL } from "../envStore";
 
 	let promise;
-
 	async function getServer(){
-		const response = await fetch('http://localhost:3000/')
+		const response = await fetch(API_URL,{
+			method:'GET',
+            // body:{temp:'test'}
+        })
 		// console.log(response.json())
 		return new Promise((resolve, reject) => {
 			response.json()
