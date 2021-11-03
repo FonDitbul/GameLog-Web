@@ -35,10 +35,10 @@
 		return response.json()
 	}
 	onMount(async ()=>{ //HTML이 mount 된후에 작동하는 code
-		response = await getUser()
-		user = response.user;
+		//response = getUser()
+		//user = response.user;
 		// console.log(user)
-		console.log(response)
+		//console.log(response)
 	})
 </script>
 
@@ -59,12 +59,7 @@
 			{/if}
 		</nav>
 		<div>
-			{#await response}
-			{:then r}
-				<Route path="/"><Home/></Route>
-			{:catch error}
-				<p>{error}</p>
-			{/await}
+			<Route path="/"><Home/></Route>
 			<Route path="/library"><Library/></Route>
 			<Route path="/wishlist"><Wishlist/></Route>
 			<Route path="/search"><Search/></Route>

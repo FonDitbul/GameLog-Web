@@ -1,6 +1,7 @@
 
 <script lang="ts">
 	import HomeGameCategory from "./homeGameCategory.svelte"
+	import testGame from "../test/HomeGame.json"
 	import { API_URL } from "../envStore";
 
 	let promise;
@@ -26,12 +27,12 @@
 </script>
 
 <div>
-    {#await promise}
-    {:then Games}
-        {#each Games as category}
+    <!--{#await promise}-->
+    <!--{:then Games}-->
+        {#each testGame as category}
             <HomeGameCategory category="{category}"/>
         {/each}
-    {:catch error}
-        <p>{error}</p>
-    {/await}
+    <!--{:catch error}-->
+    <!--    <p>{error}</p>-->
+    <!--{/await}-->
 </div>
