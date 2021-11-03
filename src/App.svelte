@@ -17,23 +17,23 @@
 	let response;
 	let user:Object;
 	let isLogin:boolean = false;
-	async function getUser(){
-		const data = {
-			"email":"test@gmail.com",
-			"password":"123456"
-		}
-		const response = await fetch(API_URL+'auth/login?test=test',{
-			method: 'POST',
-			headers:{
-				// 'Accept': 'application/json',
-				'Content-Type':"application/json",
-			},
-			body: JSON.stringify(
-					data
-			),
-		})
-		return response.json()
-	}
+	// async function getUser(){
+	// 	const data = {
+	// 		"email":"test@gmail.com",
+	// 		"password":"123456"
+	// 	}
+	// 	const response = await fetch(API_URL+'auth/login?test=test',{
+	// 		method: 'POST',
+	// 		headers:{
+	// 			// 'Accept': 'application/json',
+	// 			'Content-Type':"application/json",
+	// 		},
+	// 		body: JSON.stringify(
+	// 				data
+	// 		),
+	// 	})
+	// 	return response.json()
+	// }
 	onMount(async ()=>{ //HTML이 mount 된후에 작동하는 code
 		//response = getUser()
 		//user = response.user;
