@@ -45,12 +45,16 @@
             if(res.user){
                 alert(res.message)
                 window.location.href='/'
+            }else{
+                alert(res.message);
             }
         });
     }}>
         로그인
     </button>
-    <button on:click={() => {}}>
+    <button on:click={() => {
+        window.location.href='/signup'
+    }}>
         회원가입
     </button>
 </div>
