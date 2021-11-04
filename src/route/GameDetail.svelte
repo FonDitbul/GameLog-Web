@@ -12,7 +12,6 @@
 	let gamePromise;
 	beforeUpdate(async () => {
 		gamePromise = getSelectedGame(gameId);
-		console.log(gamePromise.then(r=>{console.log(r)}))
 	})
 </script>
 
