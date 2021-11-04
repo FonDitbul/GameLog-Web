@@ -1,6 +1,8 @@
 <script>
     import {API_URL} from "../envStore";
+    import {Link} from "svelte-navigator";
     let searchText = ''
+    let searchedGame = [];
     async function searchGame (gameName) {
         const searchURL = `?name=${gameName}`;
         const response = await fetch(API_URL + 'search' + searchURL, {
@@ -16,7 +18,8 @@
         if (e.charCode === 13) {
             searchGame(searchText)
                 .then(res=>{
-                    console.log(res)
+                    searchedGame = []
+                    searchedGame = searchedGame.concat(res.data.gameName, res.data.alterName)
                 })
         }
     }
@@ -31,18 +34,22 @@
                 searchText = e.target.value
             searchGame(e.target.value)
         .then(res=>{
-            console.log(res)
+            searchedGame = []
+            searchedGame = searchedGame.concat(res.data.gameName, res.data.alterName)
         })
             }} />
-
-<!--    <button on:click={() => {-->
-<!--        searchGame(searchText)-->
-<!--        .then(res=>{-->
-<!--            console.log(res)-->
-<!--        })-->
-<!--    }}>-->
-<!--        검색-->
-<!--    </button>-->
+    {#if searchedGame}
+        {#each searchedGame as Game}
+            <td>
+                <Link to="/gamedetail?id={Game.id}">
+                    <div class="box">
+                        <img src={Game.cover[0].url}>
+                        <p>{Game.name}</p>
+                    </div>
+                </Link>
+            </td>
+        {/each}
+    {/if}
 </div>
 
 <style>
