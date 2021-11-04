@@ -27,7 +27,7 @@
     <table class="library-table">
         {#each tempLibgame.game as Game}
             <td>
-                <Link to="/gamedetail">
+                <Link to="/gamedetail?id={Game.id}">
                     <div class="box">
                         <img src={Game.cover[0].url}>
                         <p>{Game.name}</p>
