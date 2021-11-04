@@ -2,7 +2,9 @@
 	import {API_URL} from "../envStore";
 
 	let signupEmail:string = '';
+	let emailMessage:string = '';
 	let signupNickname: string = '';
+	let nicknameMessage:string = '';
 	let signupPassword: string = '';
 	let signupPasswordConfirm: string = '';;
 
@@ -25,6 +27,20 @@
 		})
 		return response.json();
 	}
+	async function validEmail(email){
+		const validURL = 'auth/validation/email?value=' + email
+		const response = await fetch(API_URL + validURL, {
+			method:'GET',
+		})
+		return response.json()
+    }
+	async function validNickname(nickname){
+		const validURL = 'auth/validation/nickname?value=' + nickname
+		const response = await fetch(API_URL + validURL, {
+			method:'GET',
+		})
+		return response.json()
+    }
 
 </script>
 
@@ -33,17 +49,29 @@
     <div>
         <input type="text"
                value={signupEmail}
-               on:input={(e) => {signupEmail = e.target.value}}
+               on:input={(e) => {
+                   signupEmail = e.target.value
+                   validEmail(signupEmail)
+                   .then(res=>{
+                       emailMessage = res.message
+                   })
+               }}
                placeholder="email"/>
-        <button> 사용가능 </button>
     </div>
+    {emailMessage}
     <div>
         <input type="text"
                value={signupNickname}
-               on:input={(e) => {signupNickname = e.target.value}}
+               on:input={(e) => {
+                   signupNickname = e.target.value
+                   validNickname(signupNickname)
+                   .then(res=>{
+                       nicknameMessage = res.message
+                   })
+               }}
                placeholder="nickname"/>
-        <button> 사용가능 </button>
     </div>
+    {nicknameMessage}
     <div>
         <input type="password"
                value={signupPassword}

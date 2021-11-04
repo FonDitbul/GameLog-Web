@@ -8,7 +8,6 @@
         const response = await fetch(API_URL + 'search' + searchURL, {
             method: 'GET',
             headers: {
-                // 'Accept': 'application/json',
                 'Content-Type': "application/json",
             },
         })
