@@ -1,5 +1,6 @@
 <script lang="ts">
     import { API_URL } from "../envStore";
+    // import fetchSession from "fetch-session";
 
 	let signinEmail: string = '';
 	let signinPassword: string = '';
@@ -11,16 +12,18 @@
 		const response = await fetch(API_URL + 'auth/login', {
 			method: 'POST',
 			headers: {
-				// 'Accept': 'application/json',
+				'Accept': 'application/json',
 				'Content-Type': "application/json",
+				'Cache': 'no-cache'
 			},
+			credentials: "include",
 			body: JSON.stringify(
 				data
 			),
 		})
+        console.log(response)
         return response.json();
 	}
-
 </script>
 
 <div class="center">
