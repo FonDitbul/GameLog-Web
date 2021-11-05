@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {beforeUpdate, onMount} from 'svelte'
+	import { beforeUpdate, onMount } from 'svelte'
 	import { Router, Route, Link } from "svelte-navigator";
 
 	import Home from './route/Home.svelte';
@@ -9,36 +9,32 @@
 	import Signin from './route/Signin.svelte'
 	import Signup from './route/Signup.svelte'
 	import GameDetail from "./route/GameDetail.svelte";
+	import UserProfile from "./route/UserProfile.svelte";
 
 	import {API_URL} from "./envStore";
 
+
 	export let name: string;
 
-	let response;
-	let user:Object;
+	let user: Object;
 	let isLogin:boolean = false;
-	// async function getUser(){
-	// 	const data = {
-	// 		"email":"test@gmail.com",
-	// 		"password":"123456"
-	// 	}
-	// 	const response = await fetch(API_URL+'auth/login?test=test',{
-	// 		method: 'POST',
-	// 		headers:{
-	// 			// 'Accept': 'application/json',
-	// 			'Content-Type':"application/json",
-	// 		},
-	// 		body: JSON.stringify(
-	// 				data
-	// 		),
-	// 	})
-	// 	return response.json()
-	// }
+	async function getUser(){
+		const response = await fetch(API_URL+'profile',{
+			method: 'GET',
+			headers:{
+				// 'Accept': 'application/json',
+				'Content-Type':"application/json",
+			},
+			credentials: "include",
+		})
+		return response.json()
+	}
 	onMount(async ()=>{ //HTML이 mount 된후에 작동하는 code
-		//response = getUser()
-		//user = response.user;
-		// console.log(user)
-		//console.log(response)
+		const response = getUser()
+		response.then(res=>{
+			user = res.data
+			isLogin = true;
+		})
 	})
 </script>
 
@@ -51,7 +47,7 @@
 			<Link to ="/wishlist">WishList</Link>
 			<Link to ="/search">Search</Link>
 			{#if isLogin}
-				<Link to ="/user">{user.nickname}</Link>
+				<Link to ="/profile?user={user.nickname}">{user.nickname}</Link>
 				<Link to ="/logout"> 로그아웃 </Link>
 			{:else}
 				<Link to ="/signin"> 로그인</Link>
@@ -67,6 +63,7 @@
 			<Route path="/signin"><Signin/></Route>
 			<Route path="/signup"><Signup/></Route>
 			<Route path="/gamedetail"><GameDetail/></Route>
+			<Route path="/profile"><UserProfile/></Route>
 		</div>
 	</Router>
 </main>
