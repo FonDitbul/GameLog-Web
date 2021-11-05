@@ -6,6 +6,7 @@
 	async function getSelectedGame(id){
 		const response = await fetch(API_URL+'select?gameId='+gameId,{
 			method:'GET',
+			credentials: "include",
 		})
 		return response.json();
 	}
