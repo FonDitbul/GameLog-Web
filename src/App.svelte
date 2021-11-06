@@ -12,6 +12,7 @@
 	import UserProfile from "./route/UserProfile.svelte";
 
 	import {API_URL} from "./envStore";
+	import UserPrefer from "./route/UserPrefer.svelte";
 
 
 	export let name: string;
@@ -64,6 +65,7 @@
 			<Route path="/signup"><Signup/></Route>
 			<Route path="/gamedetail"><GameDetail/></Route>
 			<Route path="/profile"><UserProfile/></Route>
+			<Route path="/userprefer"><UserPrefer/></Route>
 		</div>
 	</Router>
 </main>
