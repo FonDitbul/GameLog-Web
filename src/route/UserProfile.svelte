@@ -2,7 +2,6 @@
 	import {API_URL} from "../envStore";
 	import {beforeUpdate, onMount} from "svelte";
 
-	let userProfile:object;
 	let profilePromise;
 	async function getUser(){
 		const response = await fetch(API_URL+'profile',{
@@ -17,7 +16,6 @@
 	}
 	beforeUpdate(async()=>{
 		profilePromise = getUser()
-        profilePromise.then(r=>{console.log(r)})
 	})
 </script>
 
@@ -26,7 +24,9 @@
     {:then profile}
         <h2>유저 email : {profile.data.email}</h2>
         <h2>유저 닉네임 : {profile.data.nickname}</h2>
-        <h3>게임 선호 장르 :
+        <h3 on:click={()=>{
+            window.location.href='/userprefer'
+        }}>게임 선호 장르 :
             {#each profile.data.preferCategory as category}
                 <br>
                 category : {category.category}
