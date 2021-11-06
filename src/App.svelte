@@ -13,6 +13,7 @@
 
 	import {API_URL} from "./envStore";
 	import UserPrefer from "./route/UserPrefer.svelte";
+	import Logout from "./route/Logout.svelte";
 
 
 	export let name: string;
@@ -33,8 +34,13 @@
 	onMount(async ()=>{ //HTML이 mount 된후에 작동하는 code
 		const response = getUser()
 		response.then(res=>{
-			user = res.data
-			isLogin = true;
+			if(res.status === 200){
+				user = res.data
+				isLogin = true;
+			} else if(res.status === 401){
+				user = null;
+				isLogin = false;
+			}
 		})
 	})
 </script>
@@ -63,6 +69,8 @@
 
 			<Route path="/signin"><Signin/></Route>
 			<Route path="/signup"><Signup/></Route>
+			<Route path="/logout"><Logout/></Route>
+
 			<Route path="/gamedetail"><GameDetail/></Route>
 			<Route path="/profile"><UserProfile/></Route>
 			<Route path="/userprefer"><UserPrefer/></Route>
