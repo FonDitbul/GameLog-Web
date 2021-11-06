@@ -9,12 +9,14 @@
     <h1>{category.type}</h1>
     <table class="gamelist">
         {#each category.game as Game}
-            <Link to="/gamedetail?id={Game.id}">
-                <td class="box">
-                    <img src={Game.cover[0].url}>
-                    <p>{Game.name}</p>
-                </td>
-            </Link>
+            {#if Game}
+                <Link to="/gamedetail?id={Game.id}">
+                    <td class="box">
+                        <img src={Game.cover[0].url}>
+                        <p>{Game.name}</p>
+                    </td>
+                </Link>
+            {/if}
         {/each}
     </table>
 </div>
