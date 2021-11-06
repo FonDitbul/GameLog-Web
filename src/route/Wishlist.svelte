@@ -1,16 +1,16 @@
 <script lang="ts">
 	import {Link} from "svelte-navigator";
 
-	let selected:string;
+	let selected;
 	let options = [
-		{name:'aggregated_rating', 'text':'기관 점수 순'},
-		{name:'name', 'text':'이름순'},
-		{name:'first_relase_date', 'text':'출시일 순'},
-		{name:'createdTime', 'text':'담은 날짜 순'},
+		{value:'aggregated_rating', 'text':'기관 점수 순', type:'asc'},
+		{value:'name', 'text':'이름순', type:'asc'},
+		{value:'first_relase_date', 'text':'출시일 순', type:'asc'},
+		{value:'createdTime', 'text':'담은 날짜 순', type:'asc'},
 	]
 	import testGame from "../test/HomeGame.json"
 	import {API_URL} from "../envStore";
-	import {beforeUpdate} from "svelte";
+	import {beforeUpdate, onMount} from "svelte";
 	let tempLibgame = testGame[0]
 
 	async function getServer(){
@@ -29,8 +29,14 @@
 	let wishlistPromise;
 	beforeUpdate(async()=>{ //HTML이 mount 된후에 작동하는 code
 		wishlistPromise = getServer();
-		// console.log(libraryPromise);
-		// libraryPromise.then(r=>{console.log(r)})
+	})
+	onMount(async()=>{
+		wishlistPromise.then(r=>{
+			if(!r){
+				alert('로그인이 필요합니다!')
+				window.location.href='/'
+			}
+		})
 	})
 </script>
 

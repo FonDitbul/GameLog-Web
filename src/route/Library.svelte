@@ -10,7 +10,7 @@
 	]
 	import testGame from "../test/HomeGame.json"
 	import {API_URL} from "../envStore";
-	import {beforeUpdate} from "svelte";
+	import {beforeUpdate, onMount} from "svelte";
 	let tempLibgame = testGame[0]
 
 	let libraryPromise;
@@ -28,9 +28,15 @@
 	}
 	beforeUpdate(async()=>{ //HTML이 mount 된후에 작동하는 code
 		libraryPromise = getServer();
-		console.log(libraryPromise);
-		libraryPromise.then(r=>{console.log(r)})
 	})
+    onMount(async()=>{
+		libraryPromise.then(r=>{
+			if(!r){
+				alert('로그인이 필요합니다!')
+				window.location.href='/'
+            }
+        })
+    })
 </script>
 
 <h1>라이브러리</h1>
