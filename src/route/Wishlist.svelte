@@ -8,11 +8,10 @@
 		{value:'first_relase_date', 'text':'출시일 순', type:'asc'},
 		{value:'createdTime', 'text':'담은 날짜 순', type:'asc'},
 	]
-	import testGame from "../test/HomeGame.json"
 	import {API_URL} from "../envStore";
 	import {beforeUpdate, onMount} from "svelte";
-	let tempLibgame = testGame[0]
 
+	let wishlistPromise;
 	async function getServer(){
 		const response = await fetch(API_URL + 'game/wishlist',{
 			method:'GET',
@@ -26,7 +25,7 @@
 				})
 		})
 	}
-	let wishlistPromise;
+
 	beforeUpdate(async()=>{ //HTML이 mount 된후에 작동하는 code
 		wishlistPromise = getServer();
 	})

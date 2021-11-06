@@ -1,19 +1,18 @@
 <script lang="ts">
 	import {Link} from "svelte-navigator";
 
-	let selected:string;
+	let selected;
 	let options = [
 		{name:'aggregated_rating', 'text':'기관 점수 순'},
 		{name:'name', 'text':'이름순'},
 		{name:'first_relase_date', 'text':'출시일 순'},
 		{name:'createdTime', 'text':'담은 날짜 순'},
 	]
-	import testGame from "../test/HomeGame.json"
 	import {API_URL} from "../envStore";
 	import {beforeUpdate, onMount} from "svelte";
-	let tempLibgame = testGame[0]
 
 	let libraryPromise;
+
 	async function getServer(){
 		const response = await fetch(API_URL + 'game/library',{
 			method:'GET',
