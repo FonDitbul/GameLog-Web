@@ -1,7 +1,10 @@
 <script lang="ts">
 	// import { game } from "../test/gameDetail"
 	import {API_URL} from "../envStore";
+	import {unixTimestamp} from "./util";
 	import {beforeUpdate} from "svelte";
+
+
 	const gameId:number = Number(location.search.split('?id=')[1])
 	async function getSelectedGame(id){
 		const response = await fetch(API_URL+'select?gameId='+gameId,{
@@ -64,7 +67,7 @@
                 </h3>
             </div>
 
-            <h3>출시일 : {Game.gameDetail.first_release_date}</h3>
+            <h3>출시일 : {unixTimestamp(Game.gameDetail.first_release_date)}</h3>
             <h3>인게임 스크린샷 </h3>
             <div class="screenshot">
                 {#each Game.gameDetail.screenshots as screenshot}
