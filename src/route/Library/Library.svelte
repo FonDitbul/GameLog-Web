@@ -52,7 +52,7 @@
         {:then libraryGame}
             {#each libraryGame as Game}
                 <td>
-                    <Link to="/gamedetail?id={Game.gameId}">
+                    <Link to="/selectedgame?id={Game.gameId}">
                         <div class="box">
                             <img src={Game.cover.url}>
                             <p>{Game.gameName}</p>

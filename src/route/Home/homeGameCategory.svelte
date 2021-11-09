@@ -10,7 +10,7 @@
     <table class="gamelist">
         {#each category.game as Game}
             {#if Game}
-                <Link to="/gamedetail?id={Game.id}">
+                <Link to="/selectedgame?id={Game.id}">
                     <td class="box">
                         <img src={Game.cover[0].url}>
                         <p>{Game.name}</p>

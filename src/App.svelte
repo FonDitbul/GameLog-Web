@@ -2,18 +2,18 @@
 	import { beforeUpdate, onMount } from 'svelte'
 	import { Router, Route, Link } from "svelte-navigator";
 
-	import Home from './route/Home.svelte';
-	import Library from './route/Library.svelte'
-	import Wishlist from './route/Wishlist.svelte'
-	import Search from './route/Search.svelte'
-	import Signin from './route/Signin.svelte'
-	import Signup from './route/Signup.svelte'
-	import GameDetail from "./route/GameDetail.svelte";
-	import UserProfile from "./route/UserProfile.svelte";
+	import Home from './route/Home/Home.svelte';
+	import Library from './route/Library/Library.svelte'
+	import Wishlist from './route/Wishlist/Wishlist.svelte'
+	import Search from './route/Search/Search.svelte'
+	import Signin from './route/Auth/Signin.svelte'
+	import Signup from './route/Auth/Signup.svelte'
+	import SelectedGame from "./route/SelectGame/SelectedGame.svelte";
+	import UserProfile from "./route/Profile/UserProfile.svelte";
 
 	import {API_URL} from "./envStore";
-	import UserPrefer from "./route/UserPrefer.svelte";
-	import Logout from "./route/Logout.svelte";
+	import UserPrefer from "./route/Profile/UserPrefer.svelte";
+	import Logout from "./route/Auth/Logout.svelte";
 
 
 	export let name: string;
@@ -71,7 +71,7 @@
 			<Route path="/signup"><Signup/></Route>
 			<Route path="/logout"><Logout/></Route>
 
-			<Route path="/gamedetail"><GameDetail/></Route>
+			<Route path="/selectedgame"><SelectedGame/></Route>
 			<Route path="/profile"><UserProfile/></Route>
 			<Route path="/userprefer"><UserPrefer/></Route>
 		</div>

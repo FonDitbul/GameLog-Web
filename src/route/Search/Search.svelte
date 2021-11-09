@@ -40,7 +40,7 @@
     {#if searchedGame}
         {#each searchedGame as Game}
             <td>
-                <Link to="/gamedetail?id={Game.id}">
+                <Link to="/selectedgame?id={Game.id}">
                     <div class="box">
                         <img src={Game.cover[0].url}>
                         <p>{Game.name}</p>
