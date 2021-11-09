@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { API_URL } from "../envStore";
+    import { API_URL } from "../../envStore";
     // import fetchSession from "fetch-session";
 
 	let signinEmail: string = '';

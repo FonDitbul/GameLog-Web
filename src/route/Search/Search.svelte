@@ -1,5 +1,5 @@
 <script>
-    import {API_URL} from "../envStore";
+    import {API_URL} from "../../envStore";
     import {Link} from "svelte-navigator";
     let searchText = ''
     let searchedGame = [];

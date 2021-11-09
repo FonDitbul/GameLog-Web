@@ -1,7 +1,7 @@
 <script lang="ts">
 	// import { game } from "../test/gameDetail"
-	import {API_URL} from "../envStore";
-	import {unixTimestamp} from "./util";
+	import {API_URL} from "../../envStore";
+	import {unixTimestamp} from "../util";
 	import {beforeUpdate} from "svelte";
 
 

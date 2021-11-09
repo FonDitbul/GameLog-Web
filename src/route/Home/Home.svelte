@@ -1,8 +1,8 @@
 
 <script lang="ts">
 	import HomeGameCategory from "./homeGameCategory.svelte"
-	import testGame from "../test/HomeGame.json"
-	import { API_URL } from "../envStore";
+	import testGame from "../../test/HomeGame.json"
+	import { API_URL } from "../../envStore";
 
 	let promise;
 	async function getServer(){
