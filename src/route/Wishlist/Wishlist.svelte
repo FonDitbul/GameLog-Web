@@ -1,17 +1,12 @@
 <script lang="ts">
 	import {Link} from "svelte-navigator";
-
-	let selected;
-	let options = [
-		{value:'aggregated_rating', 'text':'기관 점수 순', type:'asc'},
-		{value:'name', 'text':'이름순', type:'asc'},
-		{value:'first_relase_date', 'text':'출시일 순', type:'asc'},
-		{value:'createdTime', 'text':'담은 날짜 순', type:'asc'},
-	]
 	import {API_URL} from "../../envStore";
 	import {beforeUpdate, onMount} from "svelte";
+	import {sortOptions} from "../store";
 
+	let selected;
 	let wishlistPromise;
+
 	async function getServer(){
 		const response = await fetch(API_URL + 'game/wishlist',{
 			method:'GET',
@@ -20,7 +15,6 @@
 		return new Promise((resolve, reject) => {
 			response.json()
 				.then(data=>{
-					console.log(data)
 					resolve(data.data)
 				})
 		})
@@ -45,7 +39,7 @@
 
 <div class="library container mx-auto">
     <select bind:value={selected}>
-        {#each options as option}
+        {#each sortOptions as option}
             <option value={option}>
                 {option.text}
             </option>

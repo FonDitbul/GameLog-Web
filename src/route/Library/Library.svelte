@@ -1,20 +1,16 @@
 <script lang="ts">
 	import {Link} from "svelte-navigator";
-
-	let selected;
-	let options = [
-		{name:'aggregated_rating', 'text':'기관 점수 순'},
-		{name:'name', 'text':'이름순'},
-		{name:'first_relase_date', 'text':'출시일 순'},
-		{name:'createdTime', 'text':'담은 날짜 순'},
-	]
 	import {API_URL} from "../../envStore";
 	import {beforeUpdate, onMount} from "svelte";
+	import {sortOptions} from "../store";
 
+	let selectedLibOptions
+	if(!selectedLibOptions) selectedLibOptions = sortOptions[0]
+    let libraryParams:string = `/?sort=${selectedLibOptions.sort}&sorttype=${selectedLibOptions.type}`
 	let libraryPromise;
 
-	async function getServer(){
-		const response = await fetch(API_URL + 'game/library',{
+	async function getServer(params:string){
+		const response = await fetch(API_URL + 'game/library' + params,{
 			method:'GET',
 			credentials: "include",
 		})
@@ -26,7 +22,8 @@
 		})
 	}
 	beforeUpdate(async()=>{ //HTML이 mount 된후에 작동하는 code
-		libraryPromise = getServer();
+		libraryPromise = getServer(libraryParams);
+
 	})
     onMount(async()=>{
 		libraryPromise.then(r=>{
@@ -40,8 +37,9 @@
 
 <h1>라이브러리</h1>
 <div class="library container mx-auto">
-    <select bind:value={selected}>
-        {#each options as option}
+    <select bind:value={selectedLibOptions}
+            on:change={()=>{document.location.reload();}}>
+        {#each sortOptions as option}
             <option value={option}>
                 {option.text}
             </option>
