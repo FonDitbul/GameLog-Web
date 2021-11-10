@@ -67,12 +67,13 @@ button:focus {
 }
 
 h1{
+	margin-left:40px;
 	font-size: 4em;
 }
 
 .box {
 	text-align:center;
-	width: 150px;
+	width: 140px;
 	height:200px;
 	border: 1px solid #aaa;
 	border-radius: 2px;

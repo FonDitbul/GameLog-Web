@@ -21,11 +21,15 @@
 <div class="game">
     {#await gamePromise}
     {:then Game}
-        <GameDetail GameDetail={Game.gameDetail} />
-        <hr>
+        <div class="detail">
+            <GameDetail GameDetail={Game.gameDetail} />
+        </div>
+<!--        <hr>-->
+        <div class="usergame">
         {#if Game.userGame}
             <UserGame UserGame={Game.userGame}/>
         {/if}
+        </div>
     {:catch error}
         <p>{error}</p>
     {/await}
@@ -34,6 +38,17 @@
 
 <style>
     .game{
-        float: left;
+        display: grid;
+        grid-template-columns: repeat(2, 3fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    .detail{
+        grid-column: 1;
+        grid-row: 1;
+    }
+    .usergame{
+        grid-column: 2;
+        grid-row: 1;
     }
 </style>
