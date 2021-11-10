@@ -56,9 +56,16 @@
             <img src={screenshot.url}>
         {/each}
     </div>
-
-    <h3>게임 스토리 : {GameDetail.storyline}</h3>
-    <h3>게임 요약 : {GameDetail.summary}</h3>
+    {#if GameDetail.storyline}
+        <h1>게임 스토리</h1>
+        <hr>
+        {GameDetail.storyline}
+    {/if}
+    {#if GameDetail.summary}
+        <h1>게임 요약</h1>
+        <hr>
+        {GameDetail.summary}
+    {/if}
 </div>
 
 
