@@ -2,6 +2,7 @@
 	import { beforeUpdate, onMount } from 'svelte'
 	import { Router, Route, Link } from "svelte-navigator";
 
+	import Error from './Error.svelte'
 	import Home from './route/Home/Home.svelte';
 	import Library from './route/Library/Library.svelte'
 	import Wishlist from './route/Wishlist/Wishlist.svelte'
@@ -46,9 +47,9 @@
 </script>
 
 <main class="absolute">
-	<h1>{name}!</h1>
 	<Router>
 		<nav>
+			<h1 id="logo" to ="/">{name}!</h1>
 			<Link to ="/">Home</Link>
 			<Link to ="/library">Library</Link>
 			<Link to ="/wishlist">WishList</Link>
@@ -74,6 +75,7 @@
 			<Route path="/selectedgame"><SelectedGame/></Route>
 			<Route path="/profile"><UserProfile/></Route>
 			<Route path="/userprefer"><UserPrefer/></Route>
+			<Route component="{Error}" />
 		</div>
 	</Router>
 </main>
@@ -84,6 +86,12 @@
 		/*padding: 1em;*/
 		/*max-width: 240px;*/
 		/*margin: 0 auto;*/
+	}
+	#logo{
+		color: #9500ff;
+		text-transform: uppercase;
+		font-size: 4em;
+		font-weight: 100;
 	}
 
 	h1 {
