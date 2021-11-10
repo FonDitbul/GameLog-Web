@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {API_URL} from "../../envStore";
 	import {beforeUpdate, onMount} from "svelte";
+	import ProfileCard from "./ProfileCard.svelte";
 
 	let profilePromise;
 	async function getUser(){
@@ -22,23 +23,38 @@
 <div>
     {#await profilePromise}
     {:then profile}
-        <h2>유저 email : {profile.data.email}</h2>
-        <h2>유저 닉네임 : {profile.data.nickname}</h2>
-        <h3 on:click={()=>{
-            window.location.href='/userprefer'
-        }}>게임 선호 장르 :
-            {#each profile.data.preferCategory as category}
+        <img src={API_URL + profile.data.profileImage.url} width="100px" height="100px">
+        <ProfileCard>
+        <span slot="name">
+		    {profile.data.nickname}
+	    </span>
+
+            <slot slot="email">
+                <span>{profile.data.email}</span>
+            </slot>
+
+            <span slot="game">
+		    <h3>선호 장르 :
+                {#each profile.data.preferCategory as category}
                 <br>
                 category : {category.category}
-                <br>
+                    <br>
                 이름 : {category.name}
-                <br>
+                    <br>
             {/each}
         </h3>
         <br>
-        <h2>유저 프로필 이미지 : {profile.data.nickname}</h2>
-        <img src={API_URL + profile.data.profileImage.url} width="150px" height="150px">
+	    </span>
+        </ProfileCard>
+
     {:catch error}
         <h1>{error}</h1>
     {/await}
 </div>
+
+
+
+<style>
+    div{
+    }
+</style>
