@@ -25,38 +25,62 @@
 		})
 		return response.json()
 	}
-	let genres
-	let themes;
+	let genresPromise;
+	let themesPromise;
 	beforeUpdate(async () => {
-		genres = getGenres();
-		themes = getThemes();
-		console.log(genres)
+		genresPromise = getGenres();
+		themesPromise = getThemes();
 	})
 </script>
-
 <div>
-    <div id="genres">
-        {#await genres}
+    <div class="container">
+        {#await genresPromise}
         {:then data}
-            <h1>{data.message}</h1>
+            <!--            <h1>{data.message}</h1>-->
             {#each data.data as category}
-                {category.name}
-                <br>
+                <button class="category"
+                >
+                    {category.name}
+                </button>
             {/each}
         {/await}
-    </div>
-    <div id="themes">
-        {#await themes}
+        {#await themesPromise}
         {:then data}
-            <h1>{data.message}</h1>
+            <!--            <h1>{data.message}</h1>-->
             {#each data.data as category}
-                {category.name}
-                <br>
+                <button class="category"
+                >
+                    {category.name}
+                </button>
             {/each}
         {/await}
+        <button>제출하기</button>
     </div>
 </div>
 
-<style>
 
+<style>
+    div{
+        position:absolute;
+        left:50%;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: repeat(5, 170px);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    .category{
+        text-align: center;
+        width:150px;
+        height:150px;
+        border: 1px solid #aaa;
+        padding: 1em;
+        margin: 0 0 1em 0;
+        /*word-break:break-all;*/
+    }
+    .active {
+        background-color: #9500ff;
+        color: white;
+    }
 </style>
