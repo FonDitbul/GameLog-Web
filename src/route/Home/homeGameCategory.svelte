@@ -11,10 +11,10 @@
         {#each category.game as Game}
             {#if Game}
                 <Link to="/selectedgame?id={Game.id}">
-                    <td class="box">
+                    <div class="box">
                         <img src={Game.cover[0].url}>
                         <p>{Game.name}</p>
-                    </td>
+                    </div>
                 </Link>
             {/if}
         {/each}
@@ -23,7 +23,7 @@
 
 <style>
     h1{
-        font-size: 3em;
+        font-size: 2em;
     }
     table.gamelist{
         /*text-align: center;*/

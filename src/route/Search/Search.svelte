@@ -1,6 +1,9 @@
 <script>
     import {API_URL} from "../../envStore";
     import {Link} from "svelte-navigator";
+    import { fade } from 'svelte/transition';
+
+
     let searchText = ''
     let searchedGame = [];
     async function searchGame (gameName) {
@@ -41,7 +44,7 @@
         {#each searchedGame as Game}
             <td>
                 <Link to="/selectedgame?id={Game.id}">
-                    <div class="box">
+                    <div class="box" transition:fade>
                         <img src={Game.cover[0].url}>
                         <p>{Game.name}</p>
                     </div>
