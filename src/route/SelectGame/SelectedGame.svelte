@@ -1,9 +1,14 @@
 <script lang="ts">
 	import {API_URL} from "../../envStore";
+	import {isLoginStore} from "../../appStore"
 	import {beforeUpdate} from "svelte";
 	import UserGame from "./UserGame.svelte";
 	import GameDetail from "./GameDetail.svelte";
 
+	let isLogin:boolean;
+	isLoginStore.subscribe(is =>{
+		isLogin = is
+	})
 	const gameId:number = Number(location.search.split('?id=')[1])
 	async function getSelectedGame(id){
 		const response = await fetch(API_URL+'select?gameId='+gameId,{
@@ -26,15 +31,18 @@
         </div>
 <!--        <hr>-->
         <div class="usergame">
-        {#if Game.userGame}
-            <UserGame UserGame={Game.userGame}/>
-        {/if}
+            {#if isLogin}
+                {#if Game.userGame}
+                    <UserGame UserGame={Game.userGame} selectedStatus={Game.userGame.UserGameStatus}/>
+                {:else }
+                    <UserGame/>
+                {/if}
+            {/if}
         </div>
     {:catch error}
         <p>{error}</p>
     {/await}
 </div>
-
 
 <style>
     .game{
