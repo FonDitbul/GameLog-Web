@@ -13,6 +13,7 @@
 	import UserProfile from "./route/Profile/UserProfile.svelte";
 
 	import {API_URL} from "./envStore";
+	import {isLoginStore} from "./appStore";
 	import UserPrefer from "./route/Profile/UserPrefer.svelte";
 	import Logout from "./route/Auth/Logout.svelte";
 
@@ -20,7 +21,10 @@
 	export let name: string;
 
 	let user: Object;
-	let isLogin:boolean = false;
+	let isLogin:boolean;
+	isLoginStore.subscribe(is =>{
+		isLogin = is
+	})
 	async function getUser(){
 		const response = await fetch(API_URL+'profile',{
 			method: 'GET',
@@ -37,10 +41,10 @@
 		response.then(res=>{
 			if(res.status === 200){
 				user = res.data
-				isLogin = true;
+				isLoginStore.set(true);
 			} else if(res.status === 401){
 				user = null;
-				isLogin = false;
+				isLoginStore.set(false);
 			}
 		})
 	})
