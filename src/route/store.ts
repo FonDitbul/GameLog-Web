@@ -20,3 +20,10 @@ export const sortOptions:Array<Object> =
 		{sort:'createdTime', type:'asc',		text:'담은 날짜 역 순'},
 		{sort:'createdTime', type:'desc',		text:'담은 날짜 빠른 순'},
 	]
+export const statusOptions:Array<Object> =
+	[
+		{text:'할 게임', value:'todo'},
+		{text:'플레이 중', value:'doing'},
+		{text:'클리어 !', value:'done'},
+		{text:'사고싶어요', value:'wish'}
+	]
