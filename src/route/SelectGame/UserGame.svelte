@@ -2,11 +2,11 @@
     import {statusOptions} from "../store";
 	import {API_URL} from "../../envStore";
 	import {beforeUpdate} from "svelte";
+	import {useParams} from "svelte-navigator";
 
 	export let UserGame;
-	export let selectedStatus; //UserGame.userGameStatus 변수
     let selectedDefault; //선택된 default값
-	let userRating = 4;
+	let userRating = 0;
 
 	async function updateUserGame({id, rating, memo, status}){
         const data = {
@@ -33,8 +33,11 @@
 		})
 	}
     beforeUpdate(async () =>{
-		selectedDefault = UserGame.userGameStatus
-    })
+		if(UserGame) {
+			selectedDefault = UserGame.userGameStatus;
+            userRating = UserGame.userGameRating;
+		}
+	})
 </script>
 
 {#if UserGame}
@@ -59,26 +62,20 @@
             {/if}
         </h3>
         {#if UserGame.userGameStatus}
-            <h3>상태값 : {UserGame.userGameStatus}</h3>
-            <select bind:value={selectedStatus}
+            <h3>상태값</h3>
+            <select bind:value={selectedDefault}
                     on:change={async ()=> {
                         const updateGame={
                             id:UserGame.id,
-                            status:selectedStatus.value
+                            status:selectedDefault
                         }
                 await updateUserGame(updateGame)
                 location.reload()
             }}>
                 {#each statusOptions as option}
-                    {#if selectedDefault === option.value}
-                        <option value={option} selected>
+                        <option value={option.value}>
                             {option.text}
                         </option>
-                        {:else}
-                        <option value={option}>
-                            {option.text}
-                        </option>
-                    {/if}
                 {/each}
             </select>
         {/if}

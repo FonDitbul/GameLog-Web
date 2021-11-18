@@ -33,7 +33,7 @@
         <div class="usergame">
             {#if isLogin}
                 {#if Game.userGame}
-                    <UserGame UserGame={Game.userGame} selectedStatus={Game.userGame.UserGameStatus}/>
+                    <UserGame UserGame={Game.userGame}/>
                 {:else }
                     <UserGame/>
                 {/if}
