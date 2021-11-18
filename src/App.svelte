@@ -77,6 +77,7 @@
 			<Route path="/logout"><Logout/></Route>
 
 			<Route path="/selectedgame"><SelectedGame/></Route>
+			<Route path="/:route/selectedgame"><SelectedGame/></Route>
 			<Route path="/profile"><UserProfile/></Route>
 			<Route path="/userprefer"><UserPrefer/></Route>
 			<Route component="{Error}" />

@@ -50,7 +50,7 @@
         {:then wishlistGame}
             {#each wishlistGame as Game}
                 <td>
-                    <Link to="/selectedgame?id={Game.gameId}">
+                    <Link to="/wishlist/selectedgame?id={Game.gameId}">
                         <div class="box">
                             <img src={Game.cover.url}>
                             <p>{Game.gameName}</p>

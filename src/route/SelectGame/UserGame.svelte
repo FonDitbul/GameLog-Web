@@ -57,6 +57,25 @@
 				})
 		})
     }
+	async function deleteUserGame(id){
+		const data={ id:id }
+		const response = await fetch(API_URL + 'game/library', {
+			method:'DELETE',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': "application/json",
+				'Cache': 'no-cache'
+			},
+			body:JSON.stringify(data),
+			credentials: "include",
+		})
+		return new Promise((resolve, reject) => {
+			response.json()
+				.then(data=>{
+					resolve(data.data)
+				})
+		})
+    }
     onMount(async () =>{
 		if(UserGame) {
 			selectedStatus = UserGame.userGameStatus;
@@ -87,6 +106,10 @@
 
 {#if UserGame}
     <div>
+        <img on:click={async ()=>{
+            await deleteUserGame(UserGame.id)
+            history.back()
+        }} class='garbage' src="../profileSVG/garbagetool.png">
         <h3>유저 평점! {userRating}</h3>
         <input type=range bind:value={userRating} min="0" max="5" step="0.5">
         <h3>유저리뷰 : </h3>
@@ -145,5 +168,9 @@
         width:100%;
         height: 400px;
         text-overflow: inherit;
+    }
+    .garbage{
+        width:40px;
+        height: 40px;
     }
 </style>
