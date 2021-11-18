@@ -90,7 +90,7 @@
         <h3>유저 평점! {userRating}</h3>
         <input type=range bind:value={userRating} min="0" max="5" step="0.5">
         <h3>유저리뷰 : </h3>
-        <input class='review' bind:value={userMemo} placeholder="유저 리뷰">
+        <textarea class='review'  wrap="virtual"bind:value={userMemo} placeholder="유저 리뷰"/>
         {#if UserGame.userGameStatus}
             <h3>상태값</h3>
             <select bind:value={selectedStatus}
@@ -117,7 +117,7 @@
         <h3>유저 평점! {userRating}</h3>
         <input type=range bind:value={userRating} min="0" max="5" step="0.5">
         <h3>유저리뷰 : </h3>
-        <input class='review' bind:value={userMemo} placeholder="유저 리뷰">
+        <textarea class='review' wrap="virtual" bind:value={userMemo} placeholder="유저 리뷰"/>
         <h3>상태값</h3>
         <select bind:value={selectedStatus}
                 on:change={async ()=> {
@@ -141,8 +141,9 @@
 {/if}
 
 <style>
-    input.review{
+    .review{
         width:100%;
         height: 400px;
+        text-overflow: inherit;
     }
 </style>
