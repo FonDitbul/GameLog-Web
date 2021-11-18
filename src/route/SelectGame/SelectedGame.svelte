@@ -35,7 +35,7 @@
                 {#if Game.userGame}
                     <UserGame UserGame={Game.userGame}/>
                 {:else }
-                    <UserGame/>
+                    <UserGame GAME={Game.gameDetail}/>
                 {/if}
             {/if}
         </div>
