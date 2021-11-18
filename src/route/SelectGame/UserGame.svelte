@@ -1,9 +1,11 @@
 <script lang="ts">
     import {statusOptions} from "../store";
 	import {API_URL} from "../../envStore";
+	import {beforeUpdate} from "svelte";
 
 	export let UserGame;
 	export let selectedStatus; //UserGame.userGameStatus 변수
+    let selectedDefault; //선택된 default값
 	let userRating = 4;
 
 	async function updateUserGame({id, rating, memo, status}){
@@ -30,7 +32,9 @@
 				})
 		})
 	}
-
+    beforeUpdate(async () =>{
+		selectedDefault = UserGame.userGameStatus
+    })
 </script>
 
 {#if UserGame}
@@ -66,9 +70,15 @@
                 location.reload()
             }}>
                 {#each statusOptions as option}
-                    <option value={option}>
+                    {#if selectedDefault === option.value}
+                        <option value={option} selected>
                             {option.text}
-                    </option>
+                        </option>
+                        {:else}
+                        <option value={option}>
+                            {option.text}
+                        </option>
+                    {/if}
                 {/each}
             </select>
         {/if}
