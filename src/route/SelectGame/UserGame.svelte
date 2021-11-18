@@ -9,6 +9,9 @@
     let selectedStatus; //선택된 default값
 	let userRating:number;
     let userMemo:string = '';
+	function clearGame(){
+		selectedStatus = "done"
+    }
 	async function updateUserGame({id, rating, memo, status}){
         const data = {
 			id:id,
@@ -138,9 +141,9 @@
 {:else }
     <div>
         <h3>유저 평점! {userRating}</h3>
-        <input type=range bind:value={userRating} min="0" max="5" step="0.5">
+        <input type=range bind:value={userRating} on:click={()=>{clearGame()}} min="0" max="5" step="0.5">
         <h3>유저리뷰 : </h3>
-        <textarea class='review' wrap="virtual" bind:value={userMemo} placeholder="유저 리뷰"/>
+        <textarea class='review' wrap="virtual"  on:click={()=>{clearGame()}} bind:value={userMemo} placeholder="유저 리뷰"/>
         <h3>상태값</h3>
         <select bind:value={selectedStatus}
                 on:change={async ()=> {
