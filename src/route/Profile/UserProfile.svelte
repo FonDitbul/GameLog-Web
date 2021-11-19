@@ -34,7 +34,7 @@
             </slot>
 
             <span slot="game">
-		    <h3>선호 장르 :
+		    <h3 on:click={()=>{window.location.href='/userprefer'}}>선호 장르 :
                 {#each profile.data.preferCategory as category}
                 <br>
                 category : {category.category}
