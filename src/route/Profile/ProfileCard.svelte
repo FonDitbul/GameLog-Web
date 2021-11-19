@@ -13,7 +13,7 @@
 
     <div class="game">
         <slot name="game">
-            <span class="missing">Unknown email</span>
+            <span class="missing">Unknown game</span>
         </slot>
     </div>
 </article>

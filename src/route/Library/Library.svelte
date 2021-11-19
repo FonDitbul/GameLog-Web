@@ -38,7 +38,7 @@
 <h1>라이브러리</h1>
 <div class="library container mx-auto">
     <select bind:value={selectedLibOptions}
-            on:change={()=>{document.location.reload();}}>
+            on:change={()=>{location.reload();}}>
         {#each sortOptions as option}
             <option value={option}>
                 {option.text}
