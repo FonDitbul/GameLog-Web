@@ -47,6 +47,9 @@
         .then(res=>{
             if(res.user){
                 alert(res.message)
+                if(res.user.preferCategory.length < 5){
+                    return document.location.href='userprefer'
+                }
                 window.location.href='/'
             }else{
                 alert(res.message);
